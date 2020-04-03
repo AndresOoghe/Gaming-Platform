@@ -8,7 +8,7 @@ const initializePassport = require('../passport-config');
 
 initializePassport(
     passport,
-    async email => await User.findOne({ email: email } ),
+    async email => await User.findOne({ email: email }),
     async id => await User.findById(id),
 );
 
@@ -59,9 +59,15 @@ router.post('/register', checkNotAuthenticated, async (req, res) => {
     }
 });
 
+
 router.delete('/logout', checkAuthenticated, (req, res) => {
     req.logOut();
     res.redirect('/login');
 });
 
-module.exports = router;
+router.get('/logout', (req, res) => {
+    req.logOut();
+    res.redirect('/login');
+}),
+
+    module.exports = router;
