@@ -1,0 +1,13 @@
+<h1>Search Games</h1>
+
+<form action="/games" method="get">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="<%= searchOptions.name %>">
+    </div>
+    <input type="submit" value="Search">
+</form>
+
+<% games.forEach(game => { %>
+    <div><%= game.name %></div>
+<% }); %>
