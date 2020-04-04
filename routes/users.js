@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { User, validate } = require('../models/user.model');
+const { User, validate } = require('../models/User');
 const { setSharedProperties } = require('../utilities/properties');
 const passport = require('passport');
 
@@ -20,30 +20,30 @@ module.exports = {
         })(req, res, next);
     },
     postRegister: (req, res, next) => {
-        const { name, password, email } = req.body;
+        const { userName, password, email } = req.body;
         const { error } = validate(req.body);
         if (error) {
             res.render('auth/register', {
                 layout: 'layouts/userLayout',
-                name,
+                userName,
                 password,
                 email,
                 errors: error.details
             });
         } else {
-            User.findOne({ email: req.body.email })
+            User.findOne({ userName: req.body.userName })
                 .then(user => {
                     if (user) {
                         res.render('auth/register', {
                             layout: 'layouts/userLayout',
-                            name,
+                            userName,
                             password,
                             email,
                             errors: ['User already registered.']
                         });
                     } else {
                         const newUser = new User({
-                            name: name,
+                            userName: userName,
                             password: password,
                             email: email,
                         });
