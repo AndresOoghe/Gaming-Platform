@@ -39,7 +39,7 @@ module.exports = {
                             userName,
                             password,
                             email,
-                            errors: ['User already registered.']
+                            errors: [{message: 'User already registered.'}]
                         });
                     } else {
                         const newUser = new User({
