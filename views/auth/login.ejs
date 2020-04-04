@@ -1,17 +1,15 @@
 <h1>Login</h1>
 
-<% if (messages.error) { %>
-    <%= messages.error %>
-<% } %> 
+<%- include('../partials/messages') %>
 
 <form action="/login" method="POST">
     <div>
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required>
+        <input type="email" name="email" id="email" value="<%= typeof email != 'undefined' ? email : '' %>">
     </div>
     <div>
         <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required>
+        <input type="password" name="password" id="password">
     </div>
     <div>
         <input type="submit" value="Login">

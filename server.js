@@ -10,38 +10,61 @@ const mongoose = require('mongoose');
 const flash = require('express-flash');
 const session = require('express-session');
 const passport = require('passport');
-const { checkAuthenticated } = require('./middleware/auth');
-const methodOverrice = require('method-override');
+const { checkAuthenticated, checkNotAuthenticated } = require('./middleware/auth');
+const { getLogin, postLogin, getRegister, postRegister, getLogout } = require('./routes/users');
 
-const indexRouter = require('./routes/index.route');
-const gamesRouter = require('./routes/games.route');
+// Passport config
+require('./config/passport')(passport);
 
+// EJS
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.set('layout', 'layouts/layout');
 app.use(expressLayouts);
 app.use(express.static('public'));
+
+// Bodyparser
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
-app.use(flash());
+
+// Express Session
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
 }));
+
+// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(methodOverrice('_method'));
 
+// Connect Flash
+app.use(flash());
+
+// Global Vars
+app.use((req, res, next) => {
+    res.locals.succes_msg = req.flash('succes_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
+});
+
+// Connect to Mongo
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on('error', error => console.error(error));
-db.once('open', () => console.log('Connected to Mongoose.'));
+})
+.then(() => console.log('Connected to MongoDB...'))
+.catch(err => console.log(err));
 
-app.use('/', indexRouter);
-app.use('/games', checkAuthenticated, gamesRouter);
+// Authentication routes
+app.get('/login', checkNotAuthenticated, getLogin);
+app.get('/register', checkNotAuthenticated, getRegister);
+app.get('/logout', checkAuthenticated, getLogout);
+app.post('/login', checkNotAuthenticated, postLogin);
+app.post('/register', checkNotAuthenticated, postRegister);
+
+// Routes
+app.use('/',checkAuthenticated, require('./routes/index'));
+app.use('/games', checkAuthenticated, require('./routes/games'));
 
 app.listen(process.env.PORT || 3000);
-
