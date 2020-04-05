@@ -35,34 +35,45 @@ module.exports = {
                 .then(user => {
                     if (user) {
                         res.render('auth/register', {
-                            layout: 'layouts/userLayout',
                             userName,
                             password,
                             email,
-                            errors: [{message: 'User already registered.'}]
+                            errors: [{ message: 'User already registered.' }]
                         });
                     } else {
-                        const newUser = new User({
-                            userName: userName,
-                            password: password,
-                            email: email,
-                        });
+                        User.findOne({ email: req.body.email })
+                            .then(user => {
+                                if (user) {
+                                    res.render('auth/register', {
+                                        userName,
+                                        password,
+                                        email,
+                                        errors: [{ message: 'Email already registered.' }]
+                                    });
+                                } else {
+                                    const newUser = new User({
+                                        userName: userName,
+                                        password: password,
+                                        email: email,
+                                    });
 
-                        bcrypt.genSalt(10, (err, salt) => {
-                            bcrypt.hash(newUser.password, salt, (err, hash) => {
-                                if (err) throw err;
-                                newUser.password = hash;
-                                newUser.save()
-                                    .then(user => {
-                                        req.flash(
-                                            'succes_msg',
-                                            'You are now registered and can log in.',
-                                        );
-                                        res.redirect('/login');
-                                    })
-                                    .catch(err => { console.log(err) });
-                            });
-                        });
+                                    bcrypt.genSalt(10, (err, salt) => {
+                                        bcrypt.hash(newUser.password, salt, (err, hash) => {
+                                            if (err) throw err;
+                                            newUser.password = hash;
+                                            newUser.save()
+                                                .then(user => {
+                                                    req.flash(
+                                                        'succes_msg',
+                                                        'You are now registered and can log in.',
+                                                    );
+                                                    res.redirect('/login');
+                                                })
+                                                .catch(err => { console.log(err) });
+                                        });
+                                    });
+                                }
+                            })
                     }
                 });
         }
