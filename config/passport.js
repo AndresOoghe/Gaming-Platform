@@ -5,7 +5,7 @@ const { User } = require('../models/User');
 
 module.exports = (passport) => {
     const authenticateUser = (userName, password, done) => {
-        User.findOne({ userName: userName })
+        User.findOne({ userName: userName }).select('+password')
             .then(user => {
                 if (!user) {
                     return done(null, false, { 

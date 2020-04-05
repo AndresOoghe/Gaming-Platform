@@ -64,7 +64,8 @@ app.post('/login', checkNotAuthenticated, postLogin);
 app.post('/register', checkNotAuthenticated, postRegister);
 
 // Routes
-app.use('/',checkAuthenticated, require('./routes/index'));
+app.use('/', require('./routes/index'));
+app.use('/dashboard', checkAuthenticated, require('./routes/dashboard'));
 app.use('/games', checkAuthenticated, require('./routes/games'));
 
 app.listen(process.env.PORT || 3000);

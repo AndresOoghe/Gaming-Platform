@@ -4,17 +4,17 @@ const { setSharedProperties } = require('../utilities/properties');
 const passport = require('passport');
 
 module.exports = {
-    getLogin: (req, res, ) => res.render('auth/login', { layout: 'layouts/userLayout' }),
-    getRegister: (req, res) => res.render('auth/register', { layout: 'layouts/userLayout' }),
+    getLogin: (req, res, ) => res.render('auth/login'),
+    getRegister: (req, res) => res.render('auth/register'),
     getLogout: (req, res) => {
         req.logOut();
         req.flash('succes_msg', 'You are logged out.');
-        res.redirect('/login');
+        res.redirect('/');
     },
 
     postLogin: (req, res, next) => {
         passport.authenticate('local', {
-            successRedirect: '/',
+            successRedirect: '/dashboard',
             failureRedirect: '/login',
             failureFlash: true,
         })(req, res, next);
