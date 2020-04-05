@@ -1,18 +1,16 @@
-<h1>Login</h1>
+<h1 class="text-4xl text-primary lg:mb-12 mb-4">Login</h1>
+
 
 <%- include('../partials/messages') %>
 
-<form action="/login" method="POST">
-    <div>
-        <label for="userName">User name:</label>
-        <input type="text" name="userName" id="v" value="<%= typeof userName != 'undefined' ? userName : '' %>">
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
-    </div>
-    <div>
-        <input type="submit" value="Login">
-    </div>
+<form action="/login" method="POST" class="form">
+
+    <label for="userName" class="form-label">User name:</label>
+    <input type="text" name="userName" id="userName" class="form-input-text"
+        value="<%= typeof userName != 'undefined' ? userName : '' %>">
+
+    <label for="password" class="form-label">Password:</label>
+    <input type="password" name="password" id="password" class="form-input-text">
+
+    <input type="submit" value="Login" class="form-button">
 </form>
-<a href="/register">Register</a>

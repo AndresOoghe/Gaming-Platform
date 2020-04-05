@@ -1,0 +1,29 @@
+.form {
+    @apply mx-auto w-full max-w-md px-4 py-3 bg-gray-900 rounded text-left;
+}
+
+@screen sm {
+    .form {
+        @apply px-8 py-6;
+    }
+}
+
+.form-input-text {
+    @apply appearance-none border-gray-700 rounded w-full py-1 px-2 mb-5 bg-gray-800 leading-tight;
+}
+
+.form-input-text:focus {
+    @apply outline-none shadow-primary;
+}
+
+.form-label {
+    @apply block text-left mb-2 font-bold text-lg;
+}
+
+.form-button {
+    @apply bg-primary font-bold py-2 px-4 rounded;
+}
+
+.form-button:hover {
+    @apply outline-none shadow-secondary cursor-pointer;
+}

@@ -1,17 +1,13 @@
-/* .nav-item {
-    @apply lg:pt-4 py-3 px-0 block border-b-2 border-transparent hover:hover-indigo-400;
-} */
-
 .nav-item {
-    @apply py-3 px-0 block border-b-2 border-transparent;
+    @apply py-1 px-0 block;
 }
 
 .nav-item:hover {
-    @apply border-indigo-400;
+    @apply border-primary;
 }
 
 @screen lg {
     .nav-item {
-        @apply p-4;
+        @apply p-3 ml-2 border-t-2 border-transparent;
     }
 }
