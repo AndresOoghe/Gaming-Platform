@@ -11,7 +11,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const passport = require('passport');
 const { checkAuthenticated, checkNotAuthenticated } = require('./middleware/auth');
-const { getLogin, postLogin, getRegister, postRegister, getLogout } = require('./routes/users');
+const { getLogin, postLogin, getRegister, postRegister, getLogout } = require('./routes/auth');
 
 // Passport config
 require('./config/passport')(passport);

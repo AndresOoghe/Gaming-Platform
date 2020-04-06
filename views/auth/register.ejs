@@ -1,10 +1,7 @@
 <h1 class="text-4xl text-primary lg:mb-12 mb-4">Register</h1>
 
-
-<%- include('../partials/messages') %>
-
-
 <form action="/register" method="POST" class="form">
+    <%- include('../partials/messages') %>
 
     <label for="userName" class="form-label">User name</label>
     <input type="text" name="userName" id="userName" class="form-input-text"

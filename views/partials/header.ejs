@@ -16,31 +16,26 @@
         <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
             <nav class="lg:pb-0 pb-4">
                 <ul class="lg:flex lg:items-center lg:justify-between text-right text-base font-medium">
-                    <% if (typeof user != 'undefined') { %>
                     <li>
                         <a href="/games" class="nav-item">Games</a>
                     </li>
+                    <% if (typeof user != 'undefined') { %>
                     <li>
                         <a href="/games/new" class="nav-item">New game</a>
                     </li>
                     <li>
-                        <a href="/logout" class="nav-item text-red-600 hover:border-red-600">Logout</a>
+                        <a href="/logout" class="nav-item text-red-600 hover:border-red-600 lg:ml-16">Logout</a>
                     </li>
                     <% } else { %>
-
+                    <li>
+                        <a href="/login" class="nav-item lg:ml-16">Login</a>
+                    </li>
                     <li>
                         <a href="/register" class="nav-item text-primary">Register</a>
                     </li>
-                    <li>
-                        <a href="/login" class="nav-item">Login</a>
-                    </li>
                     <% } %>
-
                 </ul>
             </nav>
-            <!-- <a href="#" class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor">
-                yeet
-            </a> -->
         </div>
     </div>
 </header>

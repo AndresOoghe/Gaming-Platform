@@ -24,7 +24,6 @@ module.exports = {
         const { error } = validate(req.body);
         if (error) {
             res.render('auth/register', {
-                layout: 'layouts/userLayout',
                 userName,
                 password,
                 email,
@@ -55,6 +54,7 @@ module.exports = {
                                         userName: userName,
                                         password: password,
                                         email: email,
+                                        roles: ['User']
                                     });
 
                                     bcrypt.genSalt(10, (err, salt) => {
