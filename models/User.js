@@ -23,7 +23,10 @@ const userSchema = new mongoose.Schema({
         maxlength: 255,
         select: false,
     },
-    isAdmin: Boolean,
+    roles: {
+        type: Array,
+        default: ['User'],
+    }
 });
 
 const User = mongoose.model('User', userSchema);
@@ -36,7 +39,7 @@ function validateUser(user) {
         password: Joi.string().required().min(3).max(255).error(errors => errors[0]),
     };
 
-    return Joi.validate(user, schema, {abortEarly: false});
+    return Joi.validate(user, schema, { abortEarly: false });
 }
 
 exports.User = User;
