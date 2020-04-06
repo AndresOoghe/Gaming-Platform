@@ -1,13 +1,11 @@
 <h1 class="text-4xl text-primary lg:mb-12 mb-4">Login</h1>
 
-
-<%- include('../partials/messages') %>
-
 <form action="/login" method="POST" class="form">
+    <%- include('../partials/messages') %>
 
-    <label for="userName" class="form-label">User name:</label>
-    <input type="text" name="userName" id="userName" class="form-input-text"
-        value="<%= typeof userName != 'undefined' ? userName : '' %>">
+    <label for="username" class="form-label">Username:</label>
+    <input type="text" name="username" id="username" class="form-input-text"
+        value="<%= typeof username != 'undefined' ? username : '' %>">
 
     <label for="password" class="form-label">Password:</label>
     <input type="password" name="password" id="password" class="form-input-text">

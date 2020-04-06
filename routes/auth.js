@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const { User, validate } = require('../models/User');
 const { setSharedProperties } = require('../utilities/properties');
 const passport = require('passport');
+const db = require('../database/users');
 
 module.exports = {
     getLogin: (req, res, ) => res.render('auth/login'),
@@ -20,39 +21,38 @@ module.exports = {
         })(req, res, next);
     },
     postRegister: (req, res, next) => {
-        const { userName, password, email } = req.body;
+        const { username, password, email } = req.body;
         const { error } = validate(req.body);
         if (error) {
             res.render('auth/register', {
-                layout: 'layouts/userLayout',
-                userName,
+                username,
                 password,
                 email,
                 errors: error.details
             });
         } else {
-            User.findOne({ userName: req.body.userName })
+            db.findByusername(req.body.username)
                 .then(user => {
                     if (user) {
                         res.render('auth/register', {
-                            userName,
+                            username,
                             password,
                             email,
                             errors: [{ message: 'User already registered.' }]
                         });
                     } else {
-                        User.findOne({ email: req.body.email })
+                        db.findByEmail(req.body.email)
                             .then(user => {
                                 if (user) {
                                     res.render('auth/register', {
-                                        userName,
+                                        username,
                                         password,
                                         email,
                                         errors: [{ message: 'Email already registered.' }]
                                     });
                                 } else {
                                     const newUser = new User({
-                                        userName: userName,
+                                        username: username,
                                         password: password,
                                         email: email,
                                     });

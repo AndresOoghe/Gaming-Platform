@@ -8,4 +8,7 @@ const gameSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Game', gameSchema);
+const Game = mongoose.model('Game', gameSchema);
+
+exports.Game = Game;
+// exports.validate = validateUser;

@@ -10,8 +10,8 @@ const mongoose = require('mongoose');
 const flash = require('express-flash');
 const session = require('express-session');
 const passport = require('passport');
-const { checkAuthenticated, checkNotAuthenticated } = require('./middleware/auth');
-const { getLogin, postLogin, getRegister, postRegister, getLogout } = require('./routes/users');
+const { checkAuthenticated, checkNotAuthenticated, checkIsAdmin } = require('./middleware/auth');
+const { getLogin, postLogin, getRegister, postRegister, getLogout } = require('./routes/auth');
 
 // Passport config
 require('./config/passport')(passport);
@@ -67,5 +67,6 @@ app.post('/register', checkNotAuthenticated, postRegister);
 app.use('/', require('./routes/index'));
 app.use('/dashboard', checkAuthenticated, require('./routes/dashboard'));
 app.use('/games', checkAuthenticated, require('./routes/games'));
+app.use('/admin', [checkAuthenticated, checkIsAdmin], require('./routes/admin'));
 
 app.listen(process.env.PORT || 3000);
