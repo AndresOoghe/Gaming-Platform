@@ -4,7 +4,6 @@ module.exports = {
            data = {};
         }
         data.user = req.user;
-        console.log(req.user.name);
         return data;
      }
 }

@@ -3,9 +3,9 @@
 <form action="/register" method="POST" class="form">
     <%- include('../partials/messages') %>
 
-    <label for="userName" class="form-label">User name</label>
-    <input type="text" name="userName" id="userName" class="form-input-text"
-        value="<%= typeof userName != 'undefined' ? userName : '' %>">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" name="username" id="username" class="form-input-text"
+        value="<%= typeof username != 'undefined' ? username : '' %>">
 
     <label for="email" class="form-label">Email</label>
     <input type="email" name="email" id="email" class="form-input-text"
