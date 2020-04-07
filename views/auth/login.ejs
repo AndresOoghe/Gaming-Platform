@@ -8,7 +8,11 @@
         value="<%= typeof username != 'undefined' ? username : '' %>">
 
     <label for="password" class="form-label">Password:</label>
-    <input type="password" name="password" id="password" class="form-input-text">
-
+    <div class="relative">
+        <input type="password" name="password" id="password" class="form-input-text pr-8"
+            value="<%= typeof password != 'undefined' ? password : '' %>">
+        <i onclick="togglePassword()"
+            class="password-toggle fa fa-eye  absolute top-0 right-0 pt-eye-top pr-eye-right"></i>
+    </div>
     <input type="submit" value="Login" class="form-button">
 </form>
