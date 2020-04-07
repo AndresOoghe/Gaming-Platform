@@ -10,7 +10,14 @@ module.exports = {
     },
     extend: {
       colors: {
-        'primary': '#ffba48'
+        'primary': '#ffba48',
+        'secondary-light': '#2d3748',
+        'secondary-dark': '#1a202c',
+        'tertiary': '#e2e8f0'
+      },
+      padding: {
+        'eye-top': '6px',
+        'eye-right': '9px',
       }
     }
   },
