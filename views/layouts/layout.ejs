@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <style>
-        #menu-toggle:checked + #menu {
+        #menu-toggle:checked+#menu {
             display: block;
         }
     </style>
@@ -15,8 +15,11 @@
 </head>
 
 <body class="min-h-screen bg-secondary-light text-tertiary">
+    <% if (typeof user != 'undefined') { %>
     <%- include('../partials/header') %>
-
+    <% } else { %>
+        <%- include('../partials/unauthenticatedHeader') %>
+    <% } %>     
     <main class="container max-w-screen-lg min-h-full antialiased lg:my-12 my-4">
         <%- body %>
     </main>

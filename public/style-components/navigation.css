@@ -11,3 +11,7 @@
         @apply p-3 ml-2 border-t-2 border-transparent;
     }
 }
+
+.unauthorised-nav-item {
+    @apply py-2 px-3 border-t-2 border-transparent block;
+}
