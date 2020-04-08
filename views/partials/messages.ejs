@@ -1,17 +1,29 @@
 <% if (typeof errors != 'undefined') { %>
-    <% errors.forEach(error => { %>
-        <%= error.message %> 
-    <% }) %>
+<% errors.forEach(error => { %>
+<div class="text-error bg-error-bg rounded leading-relaxed max-w-sm my-2 mx-auto">
+    <i class="fas fa-exclamation pl-2"></i>
+    <%= error.message.charAt(0).toUpperCase() + error.message.slice(1) %>
+</div>
+<% }) %>
 <% } %>
 
-<% if (succes_msg !== '') { %> 
-    <%= succes_msg %>
+<% if (succes_msg != '') { %>
+<div class="text-succes bg-succes-bg rounded leading-relaxed max-w-sm my-2 mx-auto">
+    <i class="fas fa-check pl-2"></i>
+    <%= succes_msg[0].charAt(0).toUpperCase() + succes_msg[0].slice(1) %>
+</div>
 <% } %>
 
-<% if (error_msg !== '') { %> 
-    <%= error_msg %>
-<% } %> 
+<% if (error_msg != '') { %>
+<div class="text-error bg-error-bg rounded leading-relaxed max-w-sm my-2 mx-auto">
+    <i class="fas fa-exclamation pl-2"></i>
+    <%= error_msg[0].charAt(0).toUpperCase() + error_msg[0].slice(1) %>
+</div>
+<% } %>
 
-<% if (error !== '') { %> 
-    <%= error %>
-<% } %> 
+<% if (error != '') { %>
+<div class="text-error bg-error-bg rounded leading-relaxed max-w-sm my-2 mx-auto">
+    <i class="fas fa-exclamation pl-2"></i>
+    <%= error[0].charAt(0).toUpperCase() + error[0].slice(1) %>
+</div>
+<% } %>
