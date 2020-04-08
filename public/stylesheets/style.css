@@ -658,6 +658,13 @@ video {
   display: block;
 }
 
+@media (min-width: 1024px) {
+  .unauthorised-nav-item {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+}
+
 .form {
   margin-left: auto;
   margin-right: auto;

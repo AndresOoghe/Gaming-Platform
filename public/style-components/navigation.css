@@ -15,3 +15,9 @@
 .unauthorised-nav-item {
     @apply py-2 px-3 border-t-2 border-transparent block;
 }
+
+@screen lg {
+    .unauthorised-nav-item {
+        @apply py-3;
+    }
+}
