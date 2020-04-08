@@ -13,7 +13,11 @@ module.exports = {
         'primary': '#ffba48',
         'secondary-light': '#2d3748',
         'secondary-dark': '#1a202c',
-        'tertiary': '#e2e8f0'
+        'tertiary': '#e2e8f0',
+        'error': '#900000',
+        'error-bg': '#fed7d7',
+        'succes': '#00584E',
+        'succes-bg': '#c6f6d5'
       },
       padding: {
         'eye-top': '6px',

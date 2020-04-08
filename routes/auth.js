@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const { User, validate } = require('../models/User');
 const { setSharedProperties } = require('../utilities/properties');
+const { formatErrorMessages } = require('../utilities/errors');
 const passport = require('passport');
 const db = require('../database/users');
 
@@ -28,7 +29,7 @@ module.exports = {
                 username,
                 password,
                 email,
-                errors: error.details
+                errors: formatErrorMessages(error.details),
             });
         } else {
             db.findByusername(req.body.username)
