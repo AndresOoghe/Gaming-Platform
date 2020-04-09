@@ -1,3 +1,13 @@
-<h1>Homepage</h1>
+<%- include('./partials/messages')  %>
 
-<%- include('./partials/messages')  %> 
+<h1 class="page-title">Homepage</h1>
+
+<div class="flex flex-wrap justify-around items-center">
+    <% if (typeof games != 'undefined') { %>
+    <% games.forEach(game => { %>
+    <a href="/games/<%= game.name %> " class="box-game bg-cover bg-no-repeat bg-center"
+        style="background-image: url('../images/<%= game.short_name %>/logo.jpg');">
+    </a>
+    <% }) %>
+    <% } %>
+</div>

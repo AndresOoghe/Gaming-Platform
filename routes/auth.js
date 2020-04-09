@@ -6,7 +6,9 @@ const passport = require('passport');
 const db = require('../database/users');
 
 module.exports = {
-    getLogin: (req, res, ) => res.render('auth/login'),
+    getLogin: (req, res, ) => {
+        res.render('auth/login', {username: req.session.username})
+    },
     getRegister: (req, res) => res.render('auth/register'),
     getLogout: (req, res) => {
         req.logOut();
@@ -15,10 +17,17 @@ module.exports = {
     },
 
     postLogin: (req, res, next) => {
-        passport.authenticate('local', {
-            successRedirect: '/dashboard',
-            failureRedirect: '/login',
-            failureFlash: true,
+        passport.authenticate('local', (err, user, info) => {
+            if (err) return next(err);
+            if (!user) {
+                req.flash('error_msg', info.message);
+                req.session.username = req.body.username;
+                return res.redirect('/login');
+            };
+            req.logIn(user, err => {
+                if (err) return next(err);
+                return res.redirect('/');
+            });
         })(req, res, next);
     },
     postRegister: (req, res, next) => {
