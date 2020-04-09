@@ -18,6 +18,6 @@ module.exports = {
             return next();
         }
         req.flash('error_msg', 'You are not allowed to view this resource.');
-        res.redirect('/dashboard');
+        res.redirect('/');
     }
 }

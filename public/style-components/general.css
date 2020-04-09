@@ -1,0 +1,19 @@
+.page-title {
+    @apply text-4xl text-primary mb-4;
+}
+
+@screen lg {
+    .page-title {
+        @apply mb-12;
+    }
+}
+
+.box-game {
+    @apply w-40 min-w-40 h-40 min-h-40 m-4 bg-secondary-dark;
+}
+
+@screen md {
+    .box-game {
+        @apply w-32 min-w-32 h-32 min-h-32 m-3;
+    }
+}

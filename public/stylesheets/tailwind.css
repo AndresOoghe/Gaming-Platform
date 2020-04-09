@@ -3,5 +3,6 @@
 @import "tailwindcss/components";
 @import "../style-components/navigation.css";
 @import "../style-components/form.css";
+@import "../style-components/general.css";
 
 @import "tailwindcss/utilities";

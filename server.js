@@ -44,7 +44,6 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.succes_msg = req.flash('succes_msg');
     res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
     next();
 });
 
@@ -66,7 +65,7 @@ app.post('/register', checkNotAuthenticated, postRegister);
 // Routes
 app.use('/', require('./routes/index'));
 app.use('/dashboard', checkAuthenticated, require('./routes/dashboard'));
-app.use('/games', checkAuthenticated, require('./routes/games'));
+app.use('/games', require('./routes/games'));
 app.use('/admin', [checkAuthenticated, checkIsAdmin], require('./routes/admin'));
 
 app.listen(process.env.PORT || 3000);

@@ -5,6 +5,10 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 3,
+    },
+    short_name: {
+        type: String,
+        required: true,
     }
 })
 
