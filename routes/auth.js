@@ -7,7 +7,7 @@ const db = require('../database/users');
 
 module.exports = {
     getLogin: (req, res, ) => {
-        const redirectTo = req.query.redirect || '/';
+        const redirectTo = req.query.redirect || req.session.redirectTo || '/';
         req.session.redirectTo = redirectTo;
         res.render('auth/login', {username: req.session.username})
     },
