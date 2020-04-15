@@ -1,5 +1,6 @@
 <% if(typeof user != 'undefined') { %>
-    <h2>Welcome <%= user.userName %></h2>
+    <h2>Welcome <%= user.username %></h2>
+    <% console.log(user) %> 
 <% } %> 
 
 <%- include('../partials/messages') %>

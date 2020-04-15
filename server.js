@@ -66,6 +66,8 @@ app.post('/register', checkNotAuthenticated, postRegister);
 app.use('/', require('./routes/index'));
 app.use('/dashboard', checkAuthenticated, require('./routes/dashboard'));
 app.use('/games', require('./routes/games'));
+app.use('/tournaments', require('./routes/tournaments'));
+
 app.use('/admin', [checkAuthenticated, checkIsAdmin], require('./routes/admin'));
 
 app.listen(process.env.PORT || 3000);

@@ -4,6 +4,7 @@ module.exports = {
             res.locals.user = req.user;
             return next();
         }
+        req.session.redirectTo = req.originalUrl;
         req.flash('error_msg', 'Please log in to view this resource.')
         res.redirect('/login');
     },
