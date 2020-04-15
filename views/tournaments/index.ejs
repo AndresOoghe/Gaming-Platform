@@ -1,0 +1,23 @@
+<h1 class="page-title"><%= game.name %></h1>
+
+
+<% if (tournaments.length <= 0) { %>
+<p>No tournaments were found for <%= game.name %></p>
+<% } else { %>
+<ul class="w-full">
+    <% tournaments.forEach(tournament => { %>
+    <li class="hover:border-primary mb-2 border-2 border-tertiary">
+        <a class="h-20 inline-block flex flex-row flex-no-wrap justify-between w-full" href="/tournaments/<%= tournament._id %>">
+            <img class="h-auto w-32 mr-4" src="../images/<%= game.short_name %>/logo.jpg" alt="<%= game.name %>">
+            <div class="flex flex-1 flex-row">
+                <p class="flex-1"><%= tournament.name %></p>
+                <div class="w-32 ml-4 text-center">
+                    <p>Registered</p>
+                    <p><%= tournament.inscriptions.length %></p>
+                </div>
+            </div>
+        </a>
+    </li>
+    <% }); %>
+</ul>
+<% } %>

@@ -7,6 +7,8 @@ const db = require('../database/users');
 
 module.exports = {
     getLogin: (req, res, ) => {
+        const redirectTo = req.query.redirect || '/';
+        req.session.redirectTo = redirectTo;
         res.render('auth/login', {username: req.session.username})
     },
     getRegister: (req, res) => res.render('auth/register'),
@@ -26,7 +28,10 @@ module.exports = {
             };
             req.logIn(user, err => {
                 if (err) return next(err);
-                return res.redirect('/');
+                const redirect = req.session.redirectTo || '/';
+                delete req.session.redirectTo;
+                req.user = user;
+                return res.redirect(redirect);
             });
         })(req, res, next);
     },
@@ -48,7 +53,7 @@ module.exports = {
                             username,
                             password,
                             email,
-                            errors: [{ message: 'User already registered.' }]
+                            errors: [{ message: 'Username already registered.' }]
                         });
                     } else {
                         db.findByEmail(req.body.email)
