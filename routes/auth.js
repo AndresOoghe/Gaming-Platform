@@ -7,9 +7,11 @@ const db = require('../database/users');
 
 module.exports = {
     getLogin: (req, res, ) => {
+        const username = req.session.username;
+        delete req.session.username;
         const redirectTo = req.query.redirect || req.session.redirectTo || '/';
         req.session.redirectTo = redirectTo;
-        res.render('auth/login', {username: req.session.username})
+        res.render('auth/login', {username: username});
     },
     getRegister: (req, res) => res.render('auth/register'),
     getLogout: (req, res) => {
@@ -82,6 +84,7 @@ module.exports = {
                                                         'succes_msg',
                                                         'You are now registered and can log in.',
                                                     );
+                                                    req.session.username = newUser.username;
                                                     res.redirect('/login');
                                                 })
                                                 .catch(err => { console.log(err) });
