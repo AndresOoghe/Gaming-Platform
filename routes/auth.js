@@ -16,7 +16,6 @@ module.exports = {
     getRegister: (req, res) => res.render('auth/register'),
     getLogout: (req, res) => {
         req.logOut();
-        req.flash('succes_msg', 'You are logged out.');
         res.redirect('/');
     },
 

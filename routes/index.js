@@ -4,8 +4,6 @@ const db = require('../database/games');
 const { setSharedProperties } = require('../utilities/properties')
 
 router.get('/', (req, res) => {
-    console.log(req.session);
-
     db.get()
         .then(games => {
             res.render('index', setSharedProperties(req, {games}));
