@@ -4,7 +4,7 @@
     <%- include('../partials/messages') %>
 
     <label for="username" class="form-label">Username:</label>
-    <input type="text" name="username" id="username" class="form-input-text"
+    <input autofocus type="text" name="username" id="username" class="form-input-text"
         value="<%= typeof username != 'undefined' ? username : '' %>">
 
     <label for="password" class="form-label">Password:</label>

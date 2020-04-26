@@ -1,0 +1,39 @@
+<div class="relative">
+    <label for="tournament-menu-toggle"
+        class="cursor-pointer lg:hidden flex align-middle justify-center font-medium py-4">
+        <i class="fas fa-bars text-2xl fill-current text-primary"></i>
+        <span class="capitalize ml-2"><%= active %></span>
+    </label>
+    <input type="checkbox" class="hidden" id="tournament-menu-toggle" />
+
+    <nav class="absolute lg:static w-full bg-secondary-dark lg:bg-transparent" id="tournament-menu">
+        <ul class="lg:flex lg:items-center lg:justify-center text-center text-base font-medium">
+            <li><a class="nav-item <%= active === 'general' ? 'active' : '' %>"
+                    href="/tournaments/<%= tournament._id %>/general">General</a></li>
+            <li><a class="nav-item <%= active === 'rules' ? 'active' : '' %>"
+                    href="/tournaments/<%= tournament._id %>/rules">Rules</a></li>
+            <li><a class="nav-item <%= active === 'brackets' ? 'active' : '' %>"
+                    href="/tournaments/<%= tournament._id %>/brackets">Brackets</a></li>
+            <li><a class="nav-item <%= active === 'results' ? 'active' : '' %>"
+                    href="/tournaments/<%= tournament._id %>/results">Results</a></li>
+            <li><a class="nav-item <%= active === 'participants' ? 'active' : '' %>"
+                    href="/tournaments/<%= tournament._id %>/participants">Participants</a></li>
+            <li><a class="nav-item <%= active === 'match' ? 'active' : '' %>"
+                    href="/tournaments/<%= tournament._id %>/match">Match</a></li>
+        </ul>
+    </nav>
+</div>
+
+<% if (typeof user != 'undefined') { %>
+<% if (tournament.inscriptions.includes(user._id.toString())) { %>
+<form action="/tournaments/<%= tournament._id %>/unregister" method="POST">
+    <input class="form-button bg-secondary-light border border-primary text-primary" type="submit" value="Unregister">
+</form>
+<% } else { %>
+<form action="/tournaments/<%= tournament._id %>/register" method="POST">
+    <input class="form-button" type="submit" value="Register">
+</form>
+<% } %>
+<% } else { %>
+<a href="/login?redirect=tournaments/<%= tournament._id %>" class="inline-block form-button">Login</a>
+<% } %>

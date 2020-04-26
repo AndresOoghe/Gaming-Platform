@@ -1,3 +1,24 @@
+#menu-toggle:checked+#menu {
+    display: block;
+}
+
+#tournament-menu-toggle:checked+#tournament-menu {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in-out;
+}
+
+#tournament-menu-toggle+#tournament-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-in-out;
+}
+
+@screen lg {
+    #tournament-menu-toggle+#tournament-menu {
+        max-height: inherit;
+    }
+}
+
 .nav-item {
     @apply py-1 px-0 block;
 }
@@ -10,14 +31,18 @@
     .nav-item {
         @apply p-3 ml-2 border-t-2 border-transparent;
     }
+
+    .nav-item.active {
+        @apply text-primary;
+    }
 }
 
-.unauthorised-nav-item {
+.unauthenticated-nav-item {
     @apply py-2 px-3 border-t-2 border-transparent block;
 }
 
 @screen lg {
-    .unauthorised-nav-item {
+    .unauthenticated-nav-item {
         @apply py-3;
     }
 }

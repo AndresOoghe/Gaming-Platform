@@ -11,6 +11,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const passport = require('passport');
 const { checkAuthenticated, checkNotAuthenticated, checkIsAdmin } = require('./middleware/auth');
+const { setActive } = require('./middleware/routing');
 const { getLogin, postLogin, getRegister, postRegister, getLogout } = require('./routes/auth');
 
 // Passport config
@@ -19,7 +20,7 @@ require('./config/passport')(passport);
 // EJS
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
-app.set('layout', 'layouts/layout');
+app.set('layout', 'layouts/general');
 app.use(expressLayouts);
 app.use(express.static('public'));
 
@@ -66,7 +67,7 @@ app.post('/register', checkNotAuthenticated, postRegister);
 app.use('/', require('./routes/index'));
 app.use('/dashboard', checkAuthenticated, require('./routes/dashboard'));
 app.use('/games', require('./routes/games'));
-app.use('/tournaments', require('./routes/tournaments'));
+app.use('/tournaments', setActive, require('./routes/tournaments'));
 
 app.use('/admin', [checkAuthenticated, checkIsAdmin], require('./routes/admin'));
 

@@ -1,22 +1,34 @@
 <% if (typeof errors != 'undefined') { %>
-<% errors.forEach(error => { %>
-<div class="text-error bg-error-bg rounded leading-relaxed max-w-sm my-2 mx-auto">
-    <i class="fas fa-exclamation pl-2"></i>
-    <%= error.message.charAt(0).toUpperCase() + error.message.slice(1) %>
+<% errors.forEach((error, index) => { %>
+<div
+    class="msg-errors-<%= index %> text-error bg-error-bg rounded leading-relaxed max-w-sm px-2 my-2 mx-auto flex flex-row flex-no-wrap justify-between items-center">
+    <div>
+        <i class="fas fa-exclamation"></i>
+        <%= error.message.charAt(0).toUpperCase() + error.message.slice(1) %>
+    </div>
+    <i onclick="removeMessage('msg-errors-<%= index %>')" class="fas fa-times pl-2"></i>
 </div>
 <% }) %>
 <% } %>
 
 <% if (succes_msg != '') { %>
-<div class="text-succes bg-succes-bg rounded leading-relaxed max-w-sm my-2 mx-auto">
-    <i class="fas fa-check pl-2"></i>
-    <%= succes_msg[0].charAt(0).toUpperCase() + succes_msg[0].slice(1) %>
+<div
+    class="msg-succes text-succes bg-succes-bg rounded leading-relaxed max-w-sm px-2 my-2 mx-auto flex flex-row flex-no-wrap justify-between items-center">
+    <div>
+        <i class="fas fa-check"></i>
+        <%= succes_msg[0].charAt(0).toUpperCase() + succes_msg[0].slice(1) %>
+    </div>
+    <i onclick="removeMessage('msg-succes')" class="fas fa-times pl-2"></i>
 </div>
 <% } %>
 
 <% if (error_msg != '') { %>
-<div class="text-error bg-error-bg rounded leading-relaxed max-w-sm my-2 mx-auto">
-    <i class="fas fa-exclamation pl-2"></i>
-    <%= error_msg[0].charAt(0).toUpperCase() + error_msg[0].slice(1) %>
+<div
+    class="msg-error text-error bg-error-bg rounded leading-relaxed max-w-sm px-2 my-2 mx-auto flex flex-row flex-no-wrap justify-between items-center">
+    <div>
+        <i class="fas fa-exclamation"></i>
+        <%= error_msg[0].charAt(0).toUpperCase() + error_msg[0].slice(1) %>
+    </div>
+    <i onclick="removeMessage('msg-error')" class="fas fa-times pl-2"></i>
 </div>
 <% } %>
