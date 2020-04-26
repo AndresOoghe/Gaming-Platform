@@ -16,6 +16,9 @@ module.exports = {
       '40': '10rem',
       '32': '8rem',
     },
+    maxHeight: {
+      '0': '0',
+    },
     extend: {
       colors: {
         'primary': '#ffba48',

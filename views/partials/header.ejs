@@ -7,7 +7,7 @@
         <label for="menu-toggle" class="cursor-pointer lg:hidden block lg:py-0 py-3">
             <svg class="fill-current text-primary" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                 viewbox="0 0 18 18">
-                <title>menu</title>
+                <title>Menu</title>
                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
             </svg>
         </label>
@@ -16,21 +16,9 @@
         <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
             <nav class="lg:pb-0 pb-4">
                 <ul class="lg:flex lg:items-center lg:justify-between text-right text-base font-medium">
-                    <!-- <li>
-                        <a href="/games" class="nav-item">Games</a>
-                    </li> -->
-                    <% if (typeof user != 'undefined') { %>
                     <li>
                         <a href="/logout" class="nav-item text-red-600 hover:border-red-600 lg:ml-16">Logout</a>
                     </li>
-                    <% } else { %>
-                    <li>
-                        <a href="/login" class="nav-item lg:ml-16">Login</a>
-                    </li>
-                    <li>
-                        <a href="/register" class="nav-item text-primary">Register</a>
-                    </li>
-                    <% } %>
                 </ul>
             </nav>
         </div>

@@ -8,11 +8,6 @@
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <style>
-        #menu-toggle:checked+#menu {
-            display: block;
-        }
-    </style>
     <title>Gaming Platform</title>
 </head>
 
@@ -22,7 +17,7 @@
     <% } else { %>
     <%- include('../partials/unauthenticatedHeader') %>
     <% } %>
-    <main class="container max-w-screen-lg min-h-full antialiased lg:my-12 my-4">
+    <main class="container max-w-screen-lg min-h-full antialiased my-4">
         <%- body %>
     </main>
     <script src="/js/formUtil.js"></script>
